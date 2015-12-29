@@ -1,0 +1,29 @@
+{
+  "name": "try-casperjs",
+  "version": "1.0.0",
+  "description": "casperjs spider.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lihongjing/try-casperjs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lihongjing/try-casperjs/issues"
+  },
+  "homepage": "https://github.com/lihongjing/try-casperjs#readme",
+  "dependencies": {
+    "cheerio": "^0.19.0",
+    "del": "^2.2.0",
+    "jquery": "^2.1.4",
+    "phantom": "^0.8.4",
+    "request": "^2.67.0"
+  },
+  "devDependencies": {
+    "gulp-util": "^3.0.7"
+  }
+}
