@@ -1,0 +1,27 @@
+import gulp from 'gulp'
+import _ from 'lodash'
+import del from 'del'
+
+const defaultConfig = {
+  src: [
+    'public'
+  ]
+}
+
+let conf
+
+setOptions()
+
+const TASK_NAME = 'clean'
+
+const task = gulp.task(TASK_NAME, (cb) => {
+  del(conf.src, cb)
+})
+
+task.setOptions = setOptions
+
+export default task
+
+function setOptions (opts) {
+  conf = _.merge({}, defaultConfig, opts)
+}

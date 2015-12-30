@@ -21,9 +21,22 @@
     "del": "^2.2.0",
     "jquery": "^2.1.4",
     "phantom": "^0.8.4",
+    "react": "^0.14.5",
     "request": "^2.67.0"
   },
   "devDependencies": {
-    "gulp-util": "^3.0.7"
+    "babel": "^5.8.34",
+    "babelify": "^7.2.0",
+    "browser-sync": "^2.10.1",
+    "browserify": "^12.0.1",
+    "del": "^2.2.0",
+    "gulp": "^3.8.11",
+    "gulp-newer": "^1.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-util": "^3.0.7",
+    "lodash": "^3.10.1",
+    "merge-stream": "^1.0.0",
+    "run-sequence": "^1.1.5",
+    "vinyl-source-stream": "^1.1.0"
   }
 }
