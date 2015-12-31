@@ -29,7 +29,6 @@ const task = gulp.task(TASK_NAME, function () {
       return gulp.src(fileConf.src)
         .pipe(newer(fileConf.dest))
         .pipe(gulp.dest(fileConf.dest))
-        .pipe(watcher.pipeTimer(TASK_NAME))
     }
 
     // if (watcher.isWatching()) {

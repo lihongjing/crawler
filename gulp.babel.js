@@ -5,6 +5,7 @@ import runSequence from 'run-sequence'
 import './tasks/clean'
 import './tasks/server'
 import './tasks/copy'
+import './tasks/browserify'
 
 if (gutil.env.prod) {
   process.env.NODE_ENV = 'production'
@@ -13,11 +14,13 @@ if (gutil.env.prod) {
 }
 
 gulp.task('dev', () => {
-  runSequence('clean', 'copy', 'server')
+  runSequence('clean', 'copy', 'browserify', 'server')
 })
 
 gulp.task('prod', () => {
-  runSequence('clean', 'copy')
+  runSequence('clean', 'copy', 'browserify')
 })
 
-gulp.task('default', ['dev'])
+gulp.task('default', () => {
+  runSequence('clean')
+})

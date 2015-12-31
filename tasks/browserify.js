@@ -1,13 +1,16 @@
 import gulp from 'gulp'
+import gutil from 'gulp-util'
 import _ from 'lodash'
+import browserify from 'browserify'
+import babelify from 'babelify'
+import source from 'vinyl-source-stream'
+import rename from 'gulp-rename'
+import path from 'path'
 
 const defaultConfig = {
-  src: {
+  files: {
     'entry': 'src/index.react.js',
     'dest': 'public/assets/js',
-    'options': {
-      'external': vendors
-    }
   }
 }
 
@@ -18,7 +21,19 @@ setOptions()
 const TASK_NAME = 'browserify'
 
 const task = gulp.task(TASK_NAME, (cb) => {
-  gulp.src(conf.src.entry)
+  browserify(conf.files.entry)
+    // .add(conf.files.entry)
+    .transform(babelify)
+    .bundle()
+    .on('error', function(e) {
+      gutil.log('Browserify Error', e)
+    })
+    .pipe(source(conf.files.entry))
+    .pipe(rename(function(pathObj){
+      pathObj.dirname = path.relative('src', pathObj.dirname)
+      pathObj.basename = pathObj.basename.replace('.react', '')
+    }))
+    .pipe(gulp.dest(conf.files.dest))
 })
 
 task.setOptions = setOptions

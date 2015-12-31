@@ -3,8 +3,6 @@ import gulp from 'gulp'
 import browserSync from 'browser-sync'
 import gutil from 'gulp-util'
 
-import watcher from './libs/watcher'
-
 const defaultConfig = {
   'src': [
     './public/{,**/}*.*'
