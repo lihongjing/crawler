@@ -31,7 +31,7 @@ function crawlHTML(err, resp, html) {
   }
 }
 
-var entry = progress.argv[2]
+var entry = process.argv[2]
 
 function run(url) {
   vistedUrls.push(url)
