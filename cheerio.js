@@ -1,41 +1,35 @@
 var $ = require('cheerio')
 var request = require('request')
-var gutil = require('gulp-util')
 
-var vistedUrls = [], toBeVisitedUrls = []
+var visitedUrls = [], toBeVisitedUrls = [], entry
 
 var regex = /^\/(.)+/g
 
-function crawlHTML(err, resp, html) {
-  if(resp.statusCode === 200) {
-    gutil.log(gutil.colors.green(resp.statusCode), ' ', vistedUrls.slice(vistedUrls.length - 1))
-  }
-  else {
-    gutil.log(gutil.colors.red(resp.statusCode), ' ', vistedUrls.slice(vistedUrls.length - 1))
-  }
-
-  if (!err && resp.statusCode === 200) {
-    var parsedHTML = $.load(html)
-    parsedHTML('a').map(function(i, link) {
-      var href = $(link).attr('href')
-      if(regex.test(href)) {
-        if(Array.prototype.indexOf.call(toBeVisitedUrls, entry + href) === -1) {
-          toBeVisitedUrls.push(entry + href)
-        }
+function run(url, cb) {
+  visitedUrls.push(url)
+  request(url, function(err, resp, html) {
+      cb(visitedUrls.slice(visitedUrls.length - 1).join(''))
+      if (!err && resp.statusCode === 200) {
+        var parsedHTML = $.load(html)
+        parsedHTML('a').map(function(i, link) {
+          var href = $(link).attr('href')
+          if(regex.test(href)) {
+            if(Array.prototype.indexOf.call(visitedUrls, entry + href) === -1 && Array.prototype.indexOf.call(toBeVisitedUrls, entry + href) === -1) {
+              toBeVisitedUrls.push(entry + href)
+            }
+          }
+        })
       }
-    })
-
-    if(toBeVisitedUrls.length) {
-      run(toBeVisitedUrls.shift())
-    }
-  }
+      if(toBeVisitedUrls.length) {
+        run(toBeVisitedUrls.shift(), cb)
+      }
+      else {
+        cb('done')
+      }
+  })
 }
 
-var entry = process.argv[2]
-
-function run(url) {
-  vistedUrls.push(url)
-  request(url, crawlHTML)
+module.exports = function(entryUrl, cb) {
+  entry = entryUrl
+  run(entry, cb)
 }
-
-run(entry)
