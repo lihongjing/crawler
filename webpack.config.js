@@ -9,16 +9,16 @@ module.exports = {
   //   hot: true,
   //   inline: true,
   //   progress: true,
-  //   contentBase: './src',
-  //   port: 8080
+  //   contentBase: './build/',
+  //   port: 3000
   // },
   entry: [
-    'webpack/hot/dev-server',
-    'webpack-dev-server/client?http://localhost:3000',
-    path.resolve(__dirname, 'src/main.jsx')
+    // 'webpack/hot/dev-server',
+    // 'webpack-dev-server/client?http://localhost:3000',
+    path.resolve(__dirname, './src/index.jsx')
   ],
   output: {
-    path: __dirname + '/build',
+    path: __dirname + '/public',
     publicPath: '/',
     filename: './bundle.js'
   },
@@ -41,11 +41,11 @@ module.exports = {
     extensions: ['', '.js', '.jsx'],
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new OpenBrowserPlugin({ url: 'http://localhost:8080' }),
+    // new webpack.HotModuleReplacementPlugin(),
+    new OpenBrowserPlugin({ url: 'http://localhost:3000' }),
     new CopyWebpackPlugin([
-      { from: './src/index.html', to: 'index.html' },
-      { from: './src/index.css', to: 'index.css' }
+      { from: './index.html', to: 'index.html' },
+      // { from: './src/index.css', to: 'index.css' }
     ]),
   ]
 };
