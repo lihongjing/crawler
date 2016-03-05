@@ -25,6 +25,10 @@ module.exports = {
   module: {
     loaders:[
       {
+        test: /\.json$/,
+        loader: 'json-loader'
+      },
+      {
         test: /\.css$/,
         include: path.resolve(__dirname, 'src'),
         loader: 'style-loader!css-loader'
@@ -34,11 +38,16 @@ module.exports = {
         include: path.resolve(__dirname, 'src'),
         exclude: /node_modules/,
         loader: 'babel-loader'
-      },
+      }
     ]
   },
+  node: {
+    fs: 'empty',
+    net: 'empty',
+    tls: 'empty',
+  },
   resolve: {
-    extensions: ['', '.js', '.jsx'],
+    extensions: ['', '.js', '.jsx', '.json'],
   },
   plugins: [
     // new webpack.HotModuleReplacementPlugin(),

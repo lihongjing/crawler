@@ -8,7 +8,7 @@ var regex = /^\/(.)+/g
 function run(url, cb) {
   visitedUrls.push(url)
   request(url, function(err, resp, html) {
-      cb(visitedUrls.slice(visitedUrls.length - 1).join(''))
+      cb(visitedUrls[visitedUrls.length - 1])
       if (!err && resp.statusCode === 200) {
         var parsedHTML = $.load(html)
         parsedHTML('a').map(function(i, link) {
