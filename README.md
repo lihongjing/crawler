@@ -1,2 +1,6 @@
-### crawl site with cheerio
-node cheerio domain
+### react + webpack + socket.io + cheerio
+
+### Run
+ * npm install
+ * npm run build
+ * npm start
