@@ -29,9 +29,9 @@ module.exports = {
         loader: 'json-loader'
       },
       {
-        test: /\.css$/,
+        test: /\.scss$/,
         include: path.resolve(__dirname, 'src'),
-        loader: 'style-loader!css-loader'
+        loader: 'style-loader!css-loader!sass-loader'
       },
       {
         test: /\.js[x]?$/,

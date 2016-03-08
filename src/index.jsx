@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import $ from 'jquery'
 import io from 'socket.io/node_modules/socket.io-client/socket.io.js'
 import Lists from './Lists'
+import './style.scss'
 
 const socket = io()
 
